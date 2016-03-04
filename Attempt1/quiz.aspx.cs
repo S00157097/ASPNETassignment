@@ -10,13 +10,13 @@ namespace Attempt1
     public partial class quiz : Page
     {
         // Question, Options
-        static Dictionary<int, string[]> questions = new Dictionary<int, string[]>()
+        public static Dictionary<int, string[]> questions = new Dictionary<int, string[]>()
         {
-            {1, new[] { "How much is 2 + 2?", "0", "1 + 1 + 1 + 1", "???", "7"} },
-            {2, new[] { "Which number is the biggest?", "10", "5", "100", "7"} },
-            {3, new[] { "What is the capital of France?", "Paris", "Germany", "Moscow", "Dublin"} },
-            {4, new[] { "How to spell \"Dog\"?", "Dawg", "Dog", "Cat", "Haund"} },
-            {5, new[] { "What is H2O?", "Water", "Fire", "Air", "Sand"} },
+            {1, new[] { "How much is 2 + 2?", "0", "???", "7", "1 + 1 + 1 + 1" } },
+            {2, new[] { "Which number is the biggest?", "10", "5", "7", "100" } },
+            {3, new[] { "What is the capital of France?", "Germany", "Moscow", "Dublin", "Paris" } },
+            {4, new[] { "How to spell \"Dog\"?", "Dawg", "Cat", "Haund", "Dog" } },
+            {5, new[] { "What is H2O?", "Fire", "Air", "Sand", "Water" } },
             {6, new[] { "Which animal can fly?", "Penguin", "Rhino", "Pancake", "Parrot"} }
         };
 
@@ -35,6 +35,10 @@ namespace Attempt1
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Application.Lock();
+            Application["Visits"] = (int)Application["Visits"] + 1;
+            Application.UnLock();
+
             string q = GetQueryString();
 
             if (!IsPostBack)
@@ -48,7 +52,7 @@ namespace Attempt1
                 btnPrevious.Enabled = false;
 
             else if (GetQueryString() == (questions.Count).ToString())
-                btnNext.Enabled = false;
+                btnNext.Text = "Finish";
 
 
             CreateTable(questions.Count);
@@ -135,7 +139,11 @@ namespace Attempt1
         protected void btnNext_Click(object sender, EventArgs e)
         {
             StoreInSession();
-            Response.Redirect(string.Format("quiz.aspx?q={0}", NewPage(false)));
+
+            if (GetQueryString() != questions.Count.ToString())
+                Response.Redirect(string.Format("quiz.aspx?q={0}", NewPage(false)));
+            else
+                Response.Redirect("finish.aspx");
         }
 
 
@@ -147,9 +155,9 @@ namespace Attempt1
             int q = Convert.ToInt32(GetQueryString());
 
             if (less)
-                q = (q == 1) ? 6 : --q;
+                q = (q == 1) ? questions.Count : --q;
             else
-                q = (q == 6) ? 1 : ++q;
+                q = (q == questions.Count) ? 1 : ++q;
 
             return q;
         }

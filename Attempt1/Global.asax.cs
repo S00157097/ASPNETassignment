@@ -11,6 +11,7 @@ namespace Attempt1
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            Application.Add("Visits", 0);
         }
     }
 }

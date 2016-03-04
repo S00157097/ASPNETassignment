@@ -7,7 +7,7 @@
     <title runat="server" id="title"></title>
 
     <meta name="author" content="Dmitrijs Savostijanovs" />
-    <meta name="description" content="Main page where you need to sign up to begin a simple quiz." />
+    <meta name="description" content="Quiz page where all the questions appear." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -34,8 +34,8 @@
                         <asp:RadioButtonList runat="server" ID="lstOptions" RepeatLayout="OrderedList" />
 
                         <div class="flex nav">
-                            <asp:Button CssClass="nav-button" runat="server" ID="btnPrevious" Text="Previous" OnClick="btnPrevious_Click" />
-                            <asp:Button CssClass="nav-button" runat="server" ID="btnNext" Text="Save and Proceed" OnClick="btnNext_Click" />
+                            <asp:Button CssClass="nav-button" runat="server" ID="btnPrevious" Text="<< Back" OnClick="btnPrevious_Click" />
+                            <asp:Button CssClass="nav-button" runat="server" ID="btnNext" Text="Save >>" OnClick="btnNext_Click" />
                         </div>
                     </div>
 
