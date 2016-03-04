@@ -18,6 +18,10 @@ namespace Attempt1
             "Slovakian", "South African", "Uruguayan", "Welsh"
         };
 
+
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,6 +30,10 @@ namespace Attempt1
                 lstNationality.DataBind();
             }
         }
+
+
+
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

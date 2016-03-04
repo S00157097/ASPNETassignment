@@ -34,10 +34,11 @@
                         <asp:RadioButtonList runat="server" ID="lstOptions" RepeatLayout="OrderedList" />
 
                         <div class="flex nav">
-                            <asp:Button CssClass="nav-button" runat="server" ID="btnPrevious" Text="<<" OnClick="btnPrevious_Click" />
-                            <asp:Button CssClass="nav-button" runat="server" ID="btnNext" Text=">>" OnClick="btnNext_Click" />
+                            <asp:Button CssClass="nav-button" runat="server" ID="btnPrevious" Text="Previous" OnClick="btnPrevious_Click" />
+                            <asp:Button CssClass="nav-button" runat="server" ID="btnNext" Text="Save and Proceed" OnClick="btnNext_Click" />
                         </div>
                     </div>
+
                 </div>
             </form>
         </main>
