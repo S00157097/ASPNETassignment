@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Attempt1.index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Attempt1.index" EnableViewState="true" %>
 
 <!DOCTYPE html>
 
@@ -53,10 +53,13 @@
                     <li>
                         <asp:Label runat="server" ID="lblNationality" Text="Nationality" AssociatedControlID="lstNationality" />
                         <asp:DropDownList runat="server" ID="lstNationality" />
+                        <asp:RequiredFieldValidator ID="reqNationality" runat="server" ErrorMessage="Nationality Is required" InitialValue="Select Nationality" ControlToValidate="lstNationality" Display="None" />
                     </li>
                 </ul>
 
-                <asp:Button CssClass="button" runat="server" ID="btnSubmit" Text="Start The Quiz" />
+                <asp:CheckBox ID="cbxRemember" runat="server" Text="Remember Me" TextAlign="Right" />
+
+                <asp:Button CssClass="button" runat="server" ID="btnSubmit" Text="Start The Quiz" OnClick="btnSubmit_Click" />
 
                 <asp:ValidationSummary CssClass="validation" runat="server" ID="valSummary" DisplayMode="List" ShowSummary="true" ShowMessageBox="false" />
             </form>
