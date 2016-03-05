@@ -39,6 +39,9 @@ namespace Attempt1
             Application["Visits"] = (int)Application["Visits"] + 1;
             Application.UnLock();
 
+            if (Session["Time"] == null)
+                Session["Time"] = DateTime.Now;
+
             string q = GetQueryString();
 
             if (!IsPostBack)
@@ -66,10 +69,20 @@ namespace Attempt1
         protected void InsertQuestion(int index)
         {
             txtQuestion.InnerHtml = questions[index][0];
+            List<int> ints = new List<int>();
+            int rand;
 
+            while (ints.Count < 4)
+            {
+                rand = new Random(Environment.TickCount).Next(1, 5);
 
-            for (int i = 1; i < questions[index].Length; i++)
-                lstOptions.Items.Add(questions[index][i]);
+                if (!ints.Contains(rand))
+                {
+                    lstOptions.Items.Add(questions[index][rand]);
+
+                    ints.Add(rand);
+                }
+            }
 
 
             if (Session["Answers"] != null)
@@ -120,7 +133,7 @@ namespace Attempt1
 
         protected void StoreInSession()
         {
-            string[] answers = (Session["Answers"] != null) ? (string[]) Session["Answers"] : new string[6];
+            string[] answers = (Session["Answers"] != null) ? (string[])Session["Answers"] : new string[6];
 
             answers[Convert.ToInt32(GetQueryString()) - 1] = lstOptions.SelectedValue;
 

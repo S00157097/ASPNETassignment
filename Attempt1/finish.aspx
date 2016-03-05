@@ -26,12 +26,16 @@
             <h1>You've Finished The Quiz</h1>
 
             <asp:Label runat="server" ID="lblScore" />
+            <br />
             <asp:Label runat="server" ID="lblTimeSpent" />
+            <br />
             <asp:Label runat="server" ID="lblTotalPeople" />
+            <br />
             <asp:Label runat="server" ID="lblAverage" />
-            <asp:Label runat="server" ID="Label4" />
-            <asp:Label runat="server" ID="Label5" />
 
+            <form runat="server" id="formFinish">
+                <asp:Button runat="server" ID="btnAgain" Text="Repeat The Quiz" OnClick="btnAgain_Click" />
+            </form>
         </main>
 
         <footer>Dmitrijs Savostijanovs 2016</footer>

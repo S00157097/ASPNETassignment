@@ -28,6 +28,14 @@ namespace Attempt1
             {
                 lstNationality.DataSource = nationalities;
                 lstNationality.DataBind();
+
+                if(Request.Cookies["userDataS00157097"] != null)
+                {
+                    txtFirstName.Text = Request.Cookies["userDataS00157097"]["FirstName"].ToString();
+                    txtLastName.Text = Request.Cookies["userDataS00157097"]["LastName"].ToString();
+                    txtEmail.Text = Request.Cookies["userDataS00157097"]["Email"].ToString();
+                    lstNationality.SelectedValue = Request.Cookies["userDataS00157097"]["Nationality"];
+                }
             }
         }
 
